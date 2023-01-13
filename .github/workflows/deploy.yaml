@@ -1,6 +1,6 @@
 name: Deploy
 
-on: [push] # workflow_dispatch pour action manuelle
+on: [push]
 
 jobs:
 
@@ -9,11 +9,11 @@ jobs:
     steps:
       - run: |
           mkdir -p ~/.ssh
-          ssh-keyscan 35.181.45.200 >> ~/.ssh/known_hosts
+          ssh-keyscan 51.178.28.206 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
           
-      - run: ssh admin@35.181.45.200 "ls"
+      - run: ssh debian@51.178.28.206 "ls"
